@@ -29,7 +29,10 @@ export default class TicketService {
     };
     return true;
   }
-
+  
+  /*
+  ** Check Adult is there in the purchase
+  */
   doCheckAdultIsBeing = (ticketTypeRequests) => {
     if (!this.ticketHelper.isAdultInPurchase(ticketTypeRequests)) {
       console.log("Error: An adult Should be there exception in Ticket request");
@@ -38,6 +41,9 @@ export default class TicketService {
     return true;
   }
 
+  /*
+  ** Enough adults is there for infants they should sit in adult laps
+  */
   enoughAdultsBeingForInfants = (ticketTypeRequests) => {
     if (!this.ticketHelper.enoughAdultInPurchase(ticketTypeRequests)){
       console.log("Error: Infants should sit on an adult lap exception in Ticket request");
@@ -46,6 +52,9 @@ export default class TicketService {
     return true;
   };
 
+  /*
+  ** Calculate total tickets in the purchase
+  */
   totalTicketsInPurchase = (ticketTypeRequests) => {
     const ticketCount = this.ticketHelper.totalTicketsInPurchase(ticketTypeRequests);
     if( ticketCount > 20){
@@ -64,7 +73,9 @@ export default class TicketService {
     return this.ticketHelper.calculateTotalPriceInPurchase(ticketTypeRequests);
   };
 
-
+  /*
+  ** Make payment
+  */
   makePayment = (accountId, totalAmountOfPurchase) => {
     try {
       this.paymentService.makePayment(accountId, totalAmountOfPurchase);  
@@ -75,7 +86,9 @@ export default class TicketService {
     };
   };
 
-
+  /*
+  ** Reserve the seats based in conditions and purchase request
+  */
   reserveSeats = (accountId, totalSeatsOfPurchase) => {
     try {
       this.seatReserver.reserveSeat(accountId, totalSeatsOfPurchase);
@@ -86,6 +99,9 @@ export default class TicketService {
     };
   };
 
+  /*
+  ** Direct to purchase tickets
+  */
   purchaseTickets(accountId, ...ticketTypeRequests) {
     try {
       this.validatePurchaseRequest(accountId, ...ticketTypeRequests);
