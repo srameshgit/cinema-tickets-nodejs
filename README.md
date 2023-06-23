@@ -1,4 +1,4 @@
-# DWP Cinema Tickets API Servie Test
+# Cinema Tickets API Servie Test
 
 A Simple NodeJS-Express project is to handle tickt booking
 
